@@ -1,6 +1,27 @@
 # Darsh Patel — Portfolio (MERN Stack)
 
-> Award-level 3D interactive portfolio website built with the MERN stack, Three.js, GSAP, and Framer Motion.
+>3D interactive portfolio website built with the MERN stack, Three.js, GSAP, and Framer Motion.
+
+---
+
+## Usage Notice
+
+This project is shared for learning purposes only.
+
+Please do NOT:
+
+- Clone or replicate the full website or design
+- Repost it with minor content changes
+- Use this project for commercial/client work
+- Create tutorials or content using this exact project
+
+If you use parts of the code, you must provide proper credit linking back to the original repository.
+
+Build your own version - do not just copy.
+
+- Darsh Patel
+
+---
 
 ---
 
@@ -212,7 +233,5 @@ Replace the emoji icons in `client/src/components/Creative.jsx` with `<img>` tag
 - ✅ Animated timeline
 - ✅ Fully responsive (mobile + desktop)
 - ✅ Rate limiting + Helmet security
-
----
 
 Made with ❤️ by Darsh Patel · Vadodara, India
