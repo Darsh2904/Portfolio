@@ -1,0 +1,127 @@
+/* ── CSS Variables ─────────────── */
+:root {
+  --bg: #030712;
+  --bg2: #060d1f;
+  --bg3: #0a1628;
+  --bg4: #0f1f3a;
+  --c1: #00f5ff;
+  --c2: #7c3aed;
+  --c3: #06d6a0;
+  --c4: #ff6b6b;
+  --c5: #ffd166;
+  --glass: rgba(255,255,255,0.03);
+  --glass2: rgba(255,255,255,0.06);
+  --border: rgba(0,245,255,0.12);
+  --border2: rgba(0,245,255,0.25);
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --text3: #475569;
+  --glow: 0 0 20px rgba(0,245,255,0.3);
+  --glow2: 0 0 40px rgba(0,245,255,0.15);
+  --font-head: 'Orbitron', monospace;
+  --font-code: 'JetBrains Mono', monospace;
+  --font-body: 'Outfit', sans-serif;
+}
+
+[data-theme='light'] {
+  --bg: #f8faff;
+  --bg2: #eef2ff;
+  --bg3: #e0e7ff;
+  --bg4: #c7d2fe;
+  --glass: rgba(0,0,0,0.02);
+  --glass2: rgba(0,0,0,0.05);
+  --border: rgba(124,58,237,0.15);
+  --border2: rgba(124,58,237,0.3);
+  --text: #0f172a;
+  --text2: #334155;
+  --text3: #94a3b8;
+  --glow: 0 0 20px rgba(124,58,237,0.2);
+  --glow2: 0 0 40px rgba(124,58,237,0.1);
+}
+
+/* ── Reset ─────────────────────── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  transition: background 0.5s, color 0.4s;
+  overflow-x: hidden;
+  cursor: none;
+}
+a { text-decoration: none; color: inherit; }
+button { border: none; cursor: none; }
+img { max-width: 100%; }
+
+/* ── Scrollbar ─────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--c1); border-radius: 2px; }
+
+/* ── Cursor ────────────────────── */
+.cursor-dot {
+  position: fixed;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--c1);
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s, height 0.2s, background 0.2s;
+  box-shadow: 0 0 10px var(--c1);
+}
+.cursor-ring {
+  position: fixed;
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--c1);
+  pointer-events: none;
+  z-index: 99998;
+  transform: translate(-50%, -50%);
+  transition: all 0.12s ease;
+  opacity: 0.5;
+}
+.cursor-dot.active { width: 18px; height: 18px; background: var(--c2); }
+.cursor-ring.active { width: 54px; height: 54px; border-color: var(--c2); opacity: 0.8; }
+
+/* ── Section common ────────────── */
+section { padding: 7rem 3rem; position: relative; }
+
+.s-tag {
+  font-family: var(--font-code);
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--c1);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+.s-tag::before { content: '//'; }
+
+.s-title {
+  font-family: var(--font-head);
+  font-size: clamp(28px, 4vw, 52px);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  line-height: 1.05;
+  margin-bottom: 1rem;
+}
+
+/* ── Animations ────────────────── */
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+@keyframes scrollPulse { 0%,100%{opacity:0.5;transform:scaleY(1)} 50%{opacity:1;transform:scaleY(1.1)} }
+@keyframes scan { 0%{top:0;opacity:0} 10%{opacity:0.4} 90%{opacity:0.4} 100%{top:100%;opacity:0} }
+@keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+@keyframes gl1 { 0%,90%,100%{transform:none} 92%{transform:translateX(-3px)} 96%{transform:translateX(3px)} }
+@keyframes gl2 { 0%,90%,100%{transform:none} 93%{transform:translateX(3px)} 97%{transform:translateX(-3px)} }
+
+/* ── Responsive ────────────────── */
+@media (max-width: 900px) {
+  section { padding: 4rem 1.5rem; }
+}
+@media (max-width: 600px) {
+  section { padding: 3rem 1rem; }
+}

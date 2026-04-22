@@ -1,0 +1,20 @@
+.marquee-row {
+  background: var(--bg3);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 0.7rem 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.marquee-inner {
+  display: inline-flex;
+  gap: 1.5rem;
+  animation: marquee 22s linear infinite;
+  font-family: var(--font-code);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text3);
+}
+.marquee-accent { color: var(--c1); }
+.marquee-sep { color: var(--text3); opacity: 0.4; }

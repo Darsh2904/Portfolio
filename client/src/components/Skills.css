@@ -1,0 +1,66 @@
+.skills { background: var(--bg); }
+.skills-head { text-align: center; margin-bottom: 2.5rem; }
+
+.glitch { position: relative; }
+.glitch::before, .glitch::after {
+  content: attr(data-text);
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 100%;
+  opacity: 0.06;
+}
+.glitch::before { color: var(--c1); animation: gl1 4s infinite; clip-path: polygon(0 20%, 100% 20%, 100% 40%, 0 40%); }
+.glitch::after  { color: var(--c2); animation: gl2 4s infinite; clip-path: polygon(0 60%, 100% 60%, 100% 80%, 0 80%); }
+
+.skills-3d-wrap {
+  position: relative;
+  height: 380px;
+  margin-bottom: 3rem;
+  border: 1px solid var(--border);
+  background: var(--glass);
+  overflow: hidden;
+}
+.sk3d-label {
+  position: absolute; top: 1rem; left: 1.25rem; z-index: 2;
+  font-family: var(--font-code); font-size: 0.6rem;
+  letter-spacing: 0.15em; color: var(--c1); text-transform: uppercase;
+}
+
+.skills-cats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+.sk-cat {
+  background: var(--glass);
+  border: 1px solid var(--border);
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s, opacity 0.7s, transform 0.7s;
+}
+.sk-cat:hover { border-color: var(--c1); }
+.sk-cat::before {
+  content: '';
+  position: absolute; top: 0; left: 0;
+  width: 2px; height: 0;
+  background: var(--c1);
+  transition: height 0.4s;
+  box-shadow: var(--glow);
+}
+.sk-cat:hover::before { height: 100%; }
+
+.sk-cat-title {
+  font-family: var(--font-code); font-size: 0.68rem;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--c1); margin-bottom: 1.25rem;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.sk-list { list-style: none; }
+.sk-list li {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0.5rem 0; border-bottom: 1px solid var(--glass2);
+  font-size: 0.82rem; color: var(--text2);
+}
+.sk-list li:last-child { border-bottom: none; }
+.sk-name { flex: 1; }
+.sk-bar-wrap { width: 50px; height: 2px; background: var(--border); flex-shrink: 0; }
+.sk-bar { display: block; height: 2px; width: 0; transition: width 1.2s ease; }
+
+@media (max-width: 1024px) { .skills-cats { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px)  { .skills-cats { grid-template-columns: 1fr; } }

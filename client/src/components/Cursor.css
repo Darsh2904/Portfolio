@@ -1,0 +1,26 @@
+.cursor-dot {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--c1);
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s, height 0.2s, background 0.2s;
+  box-shadow: 0 0 10px var(--c1);
+}
+.cursor-ring {
+  position: fixed;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--c1);
+  pointer-events: none;
+  z-index: 99998;
+  transform: translate(-50%, -50%);
+  transition: all 0.12s ease;
+  opacity: 0.5;
+}
+.cursor-dot.active { width: 18px; height: 18px; background: var(--c2); box-shadow: 0 0 10px var(--c2); }
+.cursor-ring.active { width: 54px; height: 54px; border-color: var(--c2); opacity: 0.8; }
