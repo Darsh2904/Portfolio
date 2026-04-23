@@ -27,9 +27,9 @@ const limiter = rateLimit({
   message: { error: 'Too many requests, please try again later.' }
 });
 const contactLimiter = rateLimit({
-  windowMs: 60 * 60 * 1000, // 1 hour
-  max: 5,
-  message: { error: 'Too many contact attempts. Please wait an hour.' }
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 20,
+  message: { error: 'Too many contact attempts. Please wait 15 minutes.' }
 });
 app.use('/api/', limiter);
 app.use('/api/contact', contactLimiter);
