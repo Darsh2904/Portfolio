@@ -214,6 +214,17 @@ Replace the emoji icons in `client/src/components/Creative.jsx` with `<img>` tag
 3. Generate a password for "Mail"
 4. Use that as `EMAIL_PASS` in server `.env`
 
+### Instant Contact Alerts (Recommended)
+To get notified as soon as someone submits the contact form, configure one or both:
+
+- Email alerts (already supported)
+	- `EMAIL_USER`, `EMAIL_PASS`, `EMAIL_TO`
+- Telegram alerts (new instant channel)
+	- `TELEGRAM_BOT_TOKEN`
+	- `TELEGRAM_CHAT_ID`
+
+With Telegram configured, each contact submission sends an instant message to your Telegram chat.
+
 ---
 
 ## 🎨 Features
