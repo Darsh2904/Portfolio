@@ -31,24 +31,36 @@ const Contact = () => {
     }
     setStatus('loading');
     setErrMsg('');
+    let backendOk = false, formspreeOk = false;
+    // 1. Backend (Telegram)
     try {
-      await axios.post(`${API}/contact`, form);
+      await axios.post('/api/contact', form);
+      backendOk = true;
+    } catch (err) {
+      backendOk = false;
+    }
+    // 2. Formspree (no redirect)
+    try {
+      const res = await fetch('https://formspree.io/f/xrernrgd', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+      const data = await res.json();
+      if (data.ok || data.success || data.next) formspreeOk = true;
+    } catch (err) {
+      formspreeOk = false;
+    }
+    if (backendOk || formspreeOk) {
       setStatus('success');
       setForm({ name: '', email: '', subject: '', message: '' });
       setTimeout(() => setStatus('idle'), 4000);
-    } catch (err) {
+    } else {
       setStatus('error');
-      setErrMsg(err.response?.data?.error || '// error: failed to send. try again.');
+      setErrMsg('// error: failed to send. try again.');
       setTimeout(() => setStatus('idle'), 3000);
     }
   };
-
-  const btnLabel = {
-    idle:    'execute( send_message )',
-    loading: '// sending...',
-    success: '// success: message_sent ✓',
-    error:   '// error: try again',
-  }[status];
 
   return (
     <section id="contact" className="contact">
@@ -92,11 +104,11 @@ const Contact = () => {
             <div className="fg-row">
               <div className="fg">
                 <label htmlFor="cf-name">name</label>
-                <input id="cf-name" name="name" type="text" placeholder="Your name" value={form.name} onChange={handleChange} />
+                <input id="cf-name" name="name" type="text" placeholder="Your name" value={form.name} onChange={handleChange} required />
               </div>
               <div className="fg">
                 <label htmlFor="cf-email">email</label>
-                <input id="cf-email" name="email" type="email" placeholder="you@email.com" value={form.email} onChange={handleChange} />
+                <input id="cf-email" name="email" type="email" placeholder="you@email.com" value={form.email} onChange={handleChange} required />
               </div>
             </div>
 
@@ -107,7 +119,7 @@ const Contact = () => {
 
             <div className="fg">
               <label htmlFor="cf-message">message</label>
-              <textarea id="cf-message" name="message" placeholder="Tell me about your project..." value={form.message} onChange={handleChange} />
+              <textarea id="cf-message" name="message" placeholder="Tell me about your project..." value={form.message} onChange={handleChange} required />
             </div>
 
             {errMsg && <div className="form-err">{errMsg}</div>}
@@ -117,7 +129,7 @@ const Contact = () => {
               className={`btn-submit hoverable ${status}`}
               disabled={status === 'loading'}
             >
-              {btnLabel}
+              {status === 'loading' ? '// sending...' : status === 'success' ? '// success: message_sent ✓' : status === 'error' ? '// error: try again' : 'execute( send_message )'}
             </button>
           </form>
         </div>

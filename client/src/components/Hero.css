@@ -113,7 +113,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(3,7,18,0.25), rgba(3,7,18,0.04) 55%, transparent 85%);
+  background: linear-gradient(to top, rgba(3,8,18,0.04), rgba(3,7,18,0.04) 55%, transparent 85%);
 }
 .hero-photo-frame::before {
   content: '';
@@ -124,7 +124,7 @@
   pointer-events: none;
   z-index: 2;
 }
-.hero-scan-line {
+.hero-scan-line { display: none;
   position: absolute;
   left: 0; right: 0;
   height: 2px;
