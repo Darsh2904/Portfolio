@@ -124,7 +124,7 @@
   pointer-events: none;
   z-index: 2;
 }
-.hero-scan-line { display: none;
+.hero-scan-line {
   position: absolute;
   left: 0; right: 0;
   height: 2px;
