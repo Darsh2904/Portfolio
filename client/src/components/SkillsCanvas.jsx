@@ -2,22 +2,22 @@ import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
 const TECH_LOGOS = [
-  { name: 'React.js', url: 'https://cdn.simpleicons.org/react/61DAFB', size: 1.1 },
-  { name: 'HTML/CSS', url: 'https://cdn.simpleicons.org/html5/E34F26', size: 1.0 },
-  { name: 'Tailwind', url: 'https://cdn.simpleicons.org/tailwindcss/06B6D4', size: 1.0 },
-  { name: 'JavaScript', url: 'https://cdn.simpleicons.org/javascript/F7DF1E', size: 1.0 },
-  { name: 'Node.js', url: 'https://cdn.simpleicons.org/nodedotjs/339933', size: 1.0 },
-  { name: 'Express.js', url: 'https://cdn.simpleicons.org/express/FFFFFF', size: 1.0 },
-  { name: 'MongoDB', url: 'https://cdn.simpleicons.org/mongodb/47A248', size: 1.0 },
-  { name: 'MySQL', url: 'https://cdn.simpleicons.org/mysql/4479A1', size: 1.0 },
-  { name: 'Java', url: 'https://cdn.simpleicons.org/openjdk/EA2D2E', size: 1.0 },
-  { name: 'Python', url: 'https://cdn.simpleicons.org/python/3776AB', size: 1.0 },
-  { name: 'DSA', url: 'https://api.iconify.design/mdi/graph-outline.svg?color=%2300f5ff', size: 0.95 },
-  { name: 'C', url: 'https://cdn.simpleicons.org/c/A8B9CC', size: 1.0 },
-  { name: 'CPP', url: 'https://cdn.simpleicons.org/cplusplus/00599C', size: 1.0 },
-  { name: 'Github', url: 'https://cdn.simpleicons.org/github/FFFFFF', size: 1.0 },
-  { name: 'Camera', url: 'https://api.iconify.design/mdi/camera.svg?color=%23ffd166', size: 0.95 },
-  { name: 'CSS', url: 'https://cdn.simpleicons.org/css/1572B6', size: 1.0 },
+  { name: 'React.js', url: 'https://img.icons8.com/color/96/000000/react-native.png', size: 1.1 },
+  { name: 'HTML5', url: 'https://img.icons8.com/color/96/000000/html-5.png', size: 1.0 },
+  { name: 'CSS3', url: 'https://img.icons8.com/color/96/000000/css3.png', size: 1.0 },
+  { name: 'Tailwind', url: 'https://img.icons8.com/color/96/000000/tailwindcss.png', size: 1.0 },
+  { name: 'JavaScript', url: 'https://img.icons8.com/color/96/000000/javascript.png', size: 1.0 },
+  { name: 'Node.js', url: 'https://img.icons8.com/color/96/000000/nodejs.png', size: 1.0 },
+  { name: 'Express.js', url: 'https://img.icons8.com/ios-filled/96/ffffff/express-js.png', size: 1.0 },
+  { name: 'MongoDB', url: 'https://img.icons8.com/color/96/000000/mongodb.png', size: 1.0 },
+  { name: 'MySQL', url: 'https://img.icons8.com/color/96/000000/mysql-logo.png', size: 1.0 },
+  { name: 'Java', url: 'https://img.icons8.com/color/96/000000/java-coffee-cup-logo.png', size: 1.0 },
+  { name: 'Python', url: 'https://img.icons8.com/color/96/000000/python.png', size: 1.0 },
+  { name: 'DSA', url: 'https://img.icons8.com/fluency/48/graph.png', size: 0.95 },
+  { name: 'C', url: 'https://img.icons8.com/color/96/000000/c-programming.png', size: 1.0 },
+  { name: 'C++', url: 'https://img.icons8.com/color/96/000000/c-plus-plus-logo.png', size: 1.0 },
+  { name: 'Github', url: 'https://img.icons8.com/material-outlined/96/ffffff/github.png', size: 1.0 },
+  { name: 'Camera', url: 'https://img.icons8.com/fluency/48/camera.png', size: 0.95 },
 ];
 
 const SkillsCanvas = () => {
@@ -64,6 +64,7 @@ const SkillsCanvas = () => {
         },
         undefined,
         () => {
+          console.log('Failed to load:', tech.url); // Debug log for failed loads
           const fallback = new THREE.Sprite(
             new THREE.SpriteMaterial({
               color: 0x00f5ff,
