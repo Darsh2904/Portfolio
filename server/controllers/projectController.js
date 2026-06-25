@@ -65,6 +65,18 @@ const seedProjects = [
     accentColor: '#ffd166',
     codeSnippet: "socket.on('bid', (data) => {\n  if(data.amount > currentBid) {\n    updateBid(data.amount)\n    io.emit('bid_update', data)\n  }\n})",
   },
+  {
+    order: 5,
+    title: 'Drexumi',
+    slug: 'drexumi',
+    badge: 'Web Development Agency',
+    description: 'A modern agency website for a web development studio, designed to present services, build credibility, and drive client inquiries with a clean premium layout.',
+    techStack: ['React', 'Node.js', 'Express', 'CSS'],
+    liveUrl: 'https://drexumi.vercel.app',
+    githubUrl: 'https://github.com/Darsh2904/Drexumi',
+    accentColor: '#4dd4ac',
+    codeSnippet: "const AgencySite = () => {\n  return <ServicesSection />\n}",
+  },
 ];
 
 // ── Get All Projects ──────────────
@@ -76,6 +88,14 @@ exports.getProjects = async (req, res) => {
     if (projects.length === 0) {
       await Project.insertMany(seedProjects);
       projects = await Project.find({ featured: true }).sort({ order: 1 });
+    } else {
+      const existingSlugs = new Set(projects.map((project) => project.slug));
+      const missingSeeds = seedProjects.filter((project) => !existingSlugs.has(project.slug));
+
+      if (missingSeeds.length > 0) {
+        await Project.insertMany(missingSeeds);
+        projects = await Project.find({ featured: true }).sort({ order: 1 });
+      }
     }
 
     res.json({ success: true, data: projects.map(applyLiveUrlOverrides) });
